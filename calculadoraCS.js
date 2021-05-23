@@ -52,5 +52,7 @@ function calcular(){
     let parcela = soma/Number(parcelas.value)
     resultado.innerHTML = `O valor total do contrato é de ${soma.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}<br>`
     resultado.innerHTML += `Parcelado em ${Number(parcelas.value)} vezes, o valor mensal será de ${parcela.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} `
+    lista.innerHTML = ''
+    parcelas.value = ''
 }
 
