@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculos de Contrato CS</title>
+    <link rel="stylesheet" href="CalculoKarine.css">
+</head>
+<body>
+    <header><h1>Cálculos de Contratos</h1></header>
+    <section>
+
+        <div>
+            <p><h3>CONTRATO</h3></p>
+            <p>Tempo em meses: <input type="number" id="meses"></p>
+            <p>Percentual de desconto por tempo em meses: <input type="number" id="descontoMes"></p>
+            <p>Quantidade de assinaturas: <input type="number" id="alunos"></p>
+            <p>Valor aluno/mês: <input type="number" id="valorUnitario"></p>
+            <p>Percentual de desconto por alunos <input type="number" id="descontoAlunos"></p>
+        </div>
+
+        <div>
+            <p><h3>REDAÇÃO</h3></p>
+            O contrato inicial possui redações? <input type="radio" id="simRedacao" name="redacao">
+            <label for="simRedacao">Sim</label>
+            <input type="radio" id="naoRedacao" name="redacao" checked>
+            <label for="naoRedacao">Não</label><br>
+            <p>Quantas redações por aluno? <input type="number" id="numeroRedacoes"></p> 
+            <input type="button" onclick="adicionarContrato()" value="Adicionar contrato">
+        </div>
+            <select size="10" id="lista"></select><br>
+            Número de parcelas: <input type="number" id="parcelas">
+            <input type="button" value="Calcular" onclick="calcular()">
+        </div>
+        </div>
+
+        <div id="resultado">
+
+        </div>
+    </section>
+    <script src="CalculoKarine.js"></script>
+</body>
+</html>
