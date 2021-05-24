@@ -12,18 +12,15 @@ let parcelas = document.querySelector('input#parcelas')
 
 function adicionarContrato(){
 
-    let calculoDescontoMes = (Number(descontoMes.value)/100) * Number(valorUnitario.value)
-    let AplicacaoDescontoMes = Number(valorUnitario.value) - calculoDescontoMes
-    let calculoDescontoAlunos = Number((descontoAlunos.value)/100) * Number(valorUnitario.value)
-    let AplicacaoDescontoAlunos = AplicacaoDescontoMes - calculoDescontoAlunos
-    let calculoTotal = Number(meses.value) * Number(alunos.value) * AplicacaoDescontoAlunos
-    let calculoRedacao = 3.50 * Number(alunos.value) * Number(meses.value) * Number(numeroRedacoes.value)
-    let calculoComRedacao = calculoRedacao + calculoTotal
+    const calculoDescontoMes = Number(descontoMes.value)/100 * Number(valorUnitario.value)
+    const AplicacaoDescontoMes = Number(valorUnitario.value) - calculoDescontoMes
+    const calculoDescontoAlunos = Number(descontoAlunos.value)/100 * AplicacaoDescontoMes
+    const AplicacaoDescontoAlunos = AplicacaoDescontoMes - calculoDescontoAlunos
+    const calculoTotal = AplicacaoDescontoAlunos * Number(alunos.value) * Number(meses.value)
+    const calculoRedacao = 3.50 * Number(alunos.value) * Number(meses.value) * Number(numeroRedacoes.value)
+    const calculoComRedacao = calculoRedacao + calculoTotal
 
-    
     if (redacao[1].checked){ 
-
-
         let item = document.createElement('option')
         item.text = `${calculoTotal.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
         lista.appendChild(item)
@@ -42,6 +39,7 @@ function adicionarContrato(){
     numeroRedacoes.value = ''
     descontoAlunos.value = ''
     descontoMes.value = ''
+    resultado.innerHTML = ''
 }
 
 function calcular(){
@@ -52,7 +50,8 @@ function calcular(){
     let parcela = soma/Number(parcelas.value)
     resultado.innerHTML = `O valor total do contrato é de ${soma.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}<br>`
     resultado.innerHTML += `Parcelado em ${Number(parcelas.value)} vezes, o valor mensal será de ${parcela.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} `
-    lista.innerHTML = ''
+    lista.length = ''
     parcelas.value = ''
+    valores.splice(0,valores.length)
 }
 
