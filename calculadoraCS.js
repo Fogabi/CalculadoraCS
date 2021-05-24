@@ -12,22 +12,22 @@ let parcelas = document.querySelector('input#parcelas')
 
 function adicionarContrato(){
 
-    let calculoSimples = Number(meses.value) * Number(alunos.value) * Number(valorUnitario.value)
-    let calculoDescontoMes = (Number(descontoMes.value)/100) * calculoSimples
-    let simplesMenosDesconto1 = calculoSimples - calculoDescontoMes
-    let calculoDescontoAlunos =  (Number(descontoAlunos.value)/100) * simplesMenosDesconto1
-    let desconto1MenosDesconto2 = simplesMenosDesconto1 - calculoDescontoAlunos
+    let calculoDescontoMes = (Number(descontoMes.value)/100) * Number(valorUnitario.value)
+    let AplicacaoDescontoMes = Number(valorUnitario.value) - calculoDescontoMes
+    let calculoDescontoAlunos = Number((descontoAlunos.value)/100) * Number(valorUnitario.value)
+    let AplicacaoDescontoAlunos = AplicacaoDescontoMes - calculoDescontoAlunos
+    let calculoTotal = Number(meses.value) * Number(alunos.value) * AplicacaoDescontoAlunos
     let calculoRedacao = 3.50 * Number(alunos.value) * Number(meses.value) * Number(numeroRedacoes.value)
-    let calculoComRedacao = calculoRedacao + desconto1MenosDesconto2
+    let calculoComRedacao = calculoRedacao + calculoTotal
 
     
     if (redacao[1].checked){ 
 
 
         let item = document.createElement('option')
-        item.text = `${desconto1MenosDesconto2.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
+        item.text = `${calculoTotal.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})} adicionado`
         lista.appendChild(item)
-        valores.push(desconto1MenosDesconto2)
+        valores.push(calculoTotal)
 
     }else if (redacao[0].checked){
         let item = document.createElement('option')
